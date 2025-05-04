@@ -157,7 +157,7 @@ public class SettingsManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void OnChooseLevel(int levelIndex)
+    public void ChooseLevel(int levelIndex)
     {
         DOTween.KillAll();
         Debug.Log("Opening Level: " + levelIndex);
