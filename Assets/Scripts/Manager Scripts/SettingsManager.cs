@@ -157,6 +157,14 @@ public class SettingsManager : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void OnChooseLevel(int levelIndex)
+    {
+        DOTween.KillAll();
+        Debug.Log("Opening Level: " + levelIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Destroy(gameObject);
+    }
+
     // Load the menu
     public void LoadMenu()
     {
