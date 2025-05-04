@@ -161,7 +161,7 @@ public class SettingsManager : MonoBehaviour
     {
         DOTween.KillAll();
         Debug.Log("Opening Level: " + levelIndex);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(levelIndex);
         Destroy(gameObject);
     }
 
