@@ -11,7 +11,7 @@ namespace SupanthaPaul
             instance = this;
         }
 
-        Dictionary<int, Queue<ObjectInstance>> poolDictionary = new Dictionary<int, Queue<ObjectInstance>>();
+        Dictionary<int, Queue<ObjectInstance>> poolDictionary = new();
 
         public void CreatePool(GameObject prefab, int poolSize, Transform parent= null)
         {
@@ -24,7 +24,7 @@ namespace SupanthaPaul
 
             for (int i = 0; i < poolSize; i++)
             {
-                ObjectInstance newObject = new ObjectInstance(Instantiate(prefab) as GameObject, parent);
+                ObjectInstance newObject = new(Instantiate(prefab), parent);
                 poolDictionary[poolKey].Enqueue(newObject);
             }
         }
@@ -70,9 +70,7 @@ namespace SupanthaPaul
             public void Reuse(Vector3 position, Quaternion rotation)
             {
                 gameObject.SetActive(true);
-                gameObject.transform.position = position;
-                gameObject.transform.rotation = rotation;
-
+                gameObject.transform.SetPositionAndRotation(position, rotation);
                 if (hasPoolObjectScript)
                 {
                     poolObjectScript.OnObjectReuse();

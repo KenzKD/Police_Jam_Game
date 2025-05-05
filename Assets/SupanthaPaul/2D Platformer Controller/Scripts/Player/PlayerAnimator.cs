@@ -20,7 +20,7 @@ namespace SupanthaPaul
 			m_rb = GetComponent<Rigidbody2D>();
 		}
 
-		private void Update()
+		private void FixedUpdate()
 		{
 			// Idle & Running animation
 			m_anim.SetFloat(Move, Mathf.Abs(m_rb.linearVelocity.x));

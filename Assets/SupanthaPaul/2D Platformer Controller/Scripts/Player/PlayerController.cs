@@ -32,12 +32,12 @@ namespace SupanthaPaul
 
 		[Header("Wall grab & jump")]
 		[Tooltip("Right offset of the wall detection sphere")]
-		public Vector2 grabRightOffset = new Vector2(0.16f, 0f);
-		public Vector2 grabLeftOffset = new Vector2(-0.16f, 0f);
+		public Vector2 grabRightOffset = new(0.16f, 0f);
+		public Vector2 grabLeftOffset = new(-0.16f, 0f);
 		public float grabCheckRadius = 0.24f;
 		public float slideSpeed = 2.5f;
-		public Vector2 wallJumpForce = new Vector2(10.5f, 18f);
-		public Vector2 wallClimbForce = new Vector2(4f, 14f);
+		public Vector2 wallJumpForce = new(10.5f, 18f);
+		public Vector2 wallClimbForce = new(4f, 14f);
 
 		private Rigidbody2D m_rb;
 		private ParticleSystem m_dustParticle;
@@ -85,12 +85,11 @@ namespace SupanthaPaul
 		{
 			// check if grounded
 			isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
-			var position = transform.position;
+			Vector2 position = transform.position;
 			// check if on wall
-			m_onWall = Physics2D.OverlapCircle((Vector2)position + grabRightOffset, grabCheckRadius, whatIsGround)
-			          || Physics2D.OverlapCircle((Vector2)position + grabLeftOffset, grabCheckRadius, whatIsGround);
-			m_onRightWall = Physics2D.OverlapCircle((Vector2)position + grabRightOffset, grabCheckRadius, whatIsGround);
-			m_onLeftWall = Physics2D.OverlapCircle((Vector2)position + grabLeftOffset, grabCheckRadius, whatIsGround);
+			m_onWall = Physics2D.OverlapCircle(position + grabRightOffset, grabCheckRadius, whatIsGround) || Physics2D.OverlapCircle(position + grabLeftOffset, grabCheckRadius, whatIsGround);
+			m_onRightWall = Physics2D.OverlapCircle(position + grabRightOffset, grabCheckRadius, whatIsGround);
+			m_onLeftWall = Physics2D.OverlapCircle(position + grabLeftOffset, grabCheckRadius, whatIsGround);
 
 			// calculate player and wall sides as integers
 			CalculateSides();
@@ -105,7 +104,7 @@ namespace SupanthaPaul
 				// horizontal movement
 				if(m_wallJumping)
 				{
-					m_rb.linearVelocity = Vector2.Lerp(m_rb.linearVelocity, (new Vector2(moveInput * speed, m_rb.linearVelocity.y)), 1.5f * Time.fixedDeltaTime);
+					m_rb.linearVelocity = Vector2.Lerp(m_rb.linearVelocity, new Vector2(moveInput * speed, m_rb.linearVelocity.y), 1.5f * Time.fixedDeltaTime);
 				}
 				else
 				{
@@ -117,7 +116,7 @@ namespace SupanthaPaul
 				// better jump physics
 				if (m_rb.linearVelocity.y < 0f)
 				{
-					m_rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+					m_rb.linearVelocity += (fallMultiplier - 1) * Physics2D.gravity.y * Time.fixedDeltaTime * Vector2.up;
 				}
 
 				// Flipping
