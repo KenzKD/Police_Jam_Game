@@ -29,7 +29,7 @@ public class VideoManager : MonoBehaviour
         Video v = Array.Find(videos, x => x.name == name);
         if (v == null)
         {
-            Debug.Log($"Video '{name}' not found!");
+            print($"Video '{name}' not found!");
         }
         else
         {
@@ -38,7 +38,7 @@ public class VideoManager : MonoBehaviour
             {
                 // Get video path from streaming assets
                 string videoPath = System.IO.Path.Combine(Application.streamingAssetsPath, v.videoName);
-                Debug.Log($"Playing video: {videoPath}");
+                print($"Playing video: {videoPath}");
                 player.url = videoPath;
                 player.Play();
             }

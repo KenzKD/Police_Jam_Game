@@ -27,7 +27,7 @@ public class ScoreManager : MonoBehaviour
     public void AddPoint(float value)
     {
         score += value;
-        Debug.Log($"New score: {score}");
+        print($"New score: {score}");
         scoreText.text = $"{score}/{total_Score}";
         AudioManager.Instance.PlaySFX("Score");
         CheckWin();
@@ -52,7 +52,7 @@ public class ScoreManager : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         Time.timeScale = 0f;
         VideoManager.Instance.PlayVideo("Win");
-        Debug.Log("Win!");
+        print("Win!");
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.StopSFX();
         AudioManager.Instance.StopLoopingSFX();

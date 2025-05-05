@@ -72,12 +72,12 @@ public class SettingsManager : MonoBehaviour
         if (Input.GetButtonDown("Cancel"))
         {
             OnQuit();
-            Debug.Log("Legacy Input");
+            print("Legacy Input");
         }
         if (Input.GetButtonDown("Restart"))
         {
             OnRestart();
-            Debug.Log("Legacy Input");
+            print("Legacy Input");
         }
     }
 #endif
@@ -152,7 +152,7 @@ public class SettingsManager : MonoBehaviour
     public void OnRestart()
     {
         DOTween.KillAll();
-        Debug.Log("Restart Game...");
+        print("Restart Game...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Destroy(gameObject);
     }
@@ -160,7 +160,7 @@ public class SettingsManager : MonoBehaviour
     public void ChooseLevel(int levelIndex)
     {
         DOTween.KillAll();
-        Debug.Log("Opening Level: " + levelIndex);
+        print("Opening Level: " + levelIndex);
         SceneManager.LoadScene(levelIndex);
         Destroy(gameObject);
     }
@@ -177,7 +177,7 @@ public class SettingsManager : MonoBehaviour
     public void OnQuit()
     {
         DOTween.KillAll();
-        Debug.Log("Quitting Game...");
+        print("Quitting Game...");
         Application.Quit();
     }
 }

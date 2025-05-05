@@ -53,7 +53,7 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(bgm, x => x.name == name);
         if (s == null)
         {
-            Debug.Log($"Sound '{name}' not found!");
+            print($"Sound '{name}' not found!");
         }
         else
         {
