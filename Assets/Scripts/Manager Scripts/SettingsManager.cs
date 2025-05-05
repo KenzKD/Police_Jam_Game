@@ -10,7 +10,8 @@ public class SettingsManager : MonoBehaviour
     public static SettingsManager Instance;
 
     // Game state flags
-    public static bool GameisPaused, GameisStarted, isPausible = true;
+    public static bool GameisPaused, GameisStarted;
+    public bool isAutoStart = true;
 
     // UI elements
     public Slider _bgmSlider, _sfxSlider;
@@ -31,19 +32,14 @@ public class SettingsManager : MonoBehaviour
         scorePanel.SetActive(false);
         restartObject.SetActive(false);
         settingsBGM = settingsPanel.GetComponent<Image>();
-
-        if (isPausible)
+        
+        settingObject.SetActive(true);
+        // Load volume settings or set to max
+        _bgmSlider.value = PlayerPrefs.GetFloat("bgmSavedVolume", _bgmSlider.maxValue);
+        _sfxSlider.value = PlayerPrefs.GetFloat("sfxSavedVolume", _sfxSlider.maxValue);
+            
+        if (isAutoStart)
         {
-            settingObject.SetActive(true);
-            // Load volume settings or set to max
-            _bgmSlider.value = PlayerPrefs.GetFloat("bgmSavedVolume", _bgmSlider.maxValue);
-            _sfxSlider.value = PlayerPrefs.GetFloat("sfxSavedVolume", _sfxSlider.maxValue);
-        }
-        else
-        {
-            settingObject.SetActive(false);
-            _bgmSlider.value = _bgmSlider.maxValue;
-            _sfxSlider.value = _sfxSlider.maxValue;
             StartGame();
         }
 
