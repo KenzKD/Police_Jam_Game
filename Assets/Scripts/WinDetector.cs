@@ -1,16 +1,17 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class WinDetector : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private int levelIndex;
+    private bool isDetected = false;
+    void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isDetected) return;
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // print("Player Detected");
+        isDetected = true;
+        AudioManager.Instance.PlaySFX("Win");
+        DOVirtual.DelayedCall(3f, () => SettingsManager.Instance.ChooseLevel(levelIndex));
     }
 }

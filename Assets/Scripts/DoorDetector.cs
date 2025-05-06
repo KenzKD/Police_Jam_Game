@@ -7,7 +7,7 @@ public class DoorDetector : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Player Detected");
+        // print("Player Detected");
         Door.GetComponent<Animator>().SetBool(isDetected, true);
     }
 }

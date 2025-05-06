@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 12
   m_Sprite: {fileID: 285925754, guid: 4275c3c554ffe4d479e2d24619189f2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 9147465168699897325}
   - component: {fileID: 1611384301046473856}
   - component: {fileID: 3660997651655028711}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Door Open Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 12
   m_Sprite: {fileID: 285925754, guid: 4275c3c554ffe4d479e2d24619189f2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 3379086134565384207}
   - component: {fileID: 2692670556024087286}
   - component: {fileID: 7774645748192359574}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Win Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 12
   m_Sprite: {fileID: 285925754, guid: 4275c3c554ffe4d479e2d24619189f2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -454,3 +454,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f9e443fd8975946be02791f9097c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelIndex: 2
