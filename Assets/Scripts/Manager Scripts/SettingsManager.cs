@@ -32,12 +32,12 @@ public class SettingsManager : MonoBehaviour
         scorePanel.SetActive(false);
         restartObject.SetActive(false);
         settingsBGM = settingsPanel.GetComponent<Image>();
-        
+
         settingObject.SetActive(true);
         // Load volume settings or set to max
         _bgmSlider.value = PlayerPrefs.GetFloat("bgmSavedVolume", _bgmSlider.maxValue);
         _sfxSlider.value = PlayerPrefs.GetFloat("sfxSavedVolume", _sfxSlider.maxValue);
-            
+
         if (isAutoStart)
         {
             StartGame();

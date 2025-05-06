@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace SupanthaPaul
 {
@@ -7,11 +8,13 @@ namespace SupanthaPaul
 		private Rigidbody2D m_rb;
 		private PlayerController m_controller;
 		private Animator m_anim;
+		private bool isTrulyDead = false;
 		private static readonly int Move = Animator.StringToHash("Move");
 		private static readonly int JumpState = Animator.StringToHash("JumpState");
 		private static readonly int IsJumping = Animator.StringToHash("IsJumping");
 		private static readonly int WallGrabbing = Animator.StringToHash("WallGrabbing");
 		private static readonly int IsDashing = Animator.StringToHash("IsDashing");
+		private static readonly int IsDead = Animator.StringToHash("IsDead");
 
 		private void Start()
 		{
@@ -22,6 +25,8 @@ namespace SupanthaPaul
 
 		private void FixedUpdate()
 		{
+			if (!SettingsManager.Instance.AllowGamePlay() || isTrulyDead) return;
+
 			// Idle & Running animation
 			m_anim.SetFloat(Move, Mathf.Abs(m_rb.linearVelocity.x));
 
@@ -39,16 +44,29 @@ namespace SupanthaPaul
 				m_anim.SetBool(IsJumping, false);
 			}
 
-			if(!m_controller.isGrounded && m_controller.actuallyWallGrabbing)
+			if (!m_controller.isGrounded && m_controller.actuallyWallGrabbing)
 			{
 				m_anim.SetBool(WallGrabbing, true);
-			} else
+			}
+			else
 			{
 				m_anim.SetBool(WallGrabbing, false);
 			}
 
 			// dash animation
 			m_anim.SetBool(IsDashing, m_controller.isDashing);
+
+			if (m_controller.isDead)
+			{
+				isTrulyDead = true;
+				TriggerDeathAnimation();
+			}
+		}
+
+		private void TriggerDeathAnimation()
+		{
+			m_anim.SetTrigger(IsDead);
+			DOVirtual.DelayedCall(2f, () => SettingsManager.Instance.OnRestart());
 		}
 	}
 }

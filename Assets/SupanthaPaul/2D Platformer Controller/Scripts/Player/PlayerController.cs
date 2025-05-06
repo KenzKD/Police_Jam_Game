@@ -25,7 +25,11 @@ namespace SupanthaPaul
 		[HideInInspector] public bool isGrounded;
 		[HideInInspector] public float moveInput;
 		[HideInInspector] public bool canMove = true;
+
 		[HideInInspector] public bool isDashing = false;
+		[HideInInspector] public bool isAttacking = false;
+		[HideInInspector] public bool isDead = false;
+
 		[HideInInspector] public bool actuallyWallGrabbing = false;
 		// controls whether this instance is currently playable or not
 		[HideInInspector] public bool isCurrentlyPlayable = false;
@@ -94,7 +98,7 @@ namespace SupanthaPaul
 			// calculate player and wall sides as integers
 			CalculateSides();
 
-			if((m_wallGrabbing || isGrounded) && m_wallJumping)
+			if ((m_wallGrabbing || isGrounded) && m_wallJumping)
 			{
 				m_wallJumping = false;
 			}
@@ -102,15 +106,15 @@ namespace SupanthaPaul
 			if (isCurrentlyPlayable)
 			{
 				// horizontal movement
-				if(m_wallJumping)
+				if (m_wallJumping)
 				{
 					m_rb.linearVelocity = Vector2.Lerp(m_rb.linearVelocity, new Vector2(moveInput * speed, m_rb.linearVelocity.y), 1.5f * Time.fixedDeltaTime);
 				}
 				else
 				{
-					if(canMove && !m_wallGrabbing)
+					if (canMove && !m_wallGrabbing)
 						m_rb.linearVelocity = new Vector2(moveInput * speed, m_rb.linearVelocity.y);
-					else if(!canMove)
+					else if (!canMove)
 						m_rb.linearVelocity = new Vector2(0f, m_rb.linearVelocity.y);
 				}
 				// better jump physics
@@ -138,7 +142,7 @@ namespace SupanthaPaul
 					else
 					{
 						m_dashTime -= Time.deltaTime;
-						if(m_facingRight)
+						if (m_facingRight)
 							m_rb.linearVelocity = Vector2.right * dashSpeed;
 						else
 							m_rb.linearVelocity = Vector2.left * dashSpeed;
@@ -146,13 +150,14 @@ namespace SupanthaPaul
 				}
 
 				// wall grab
-				if(m_onWall && !isGrounded && m_rb.linearVelocity.y <= 0f && m_playerSide == m_onWallSide)
+				if (m_onWall && !isGrounded && m_rb.linearVelocity.y <= 0f && m_playerSide == m_onWallSide)
 				{
 					actuallyWallGrabbing = true;    // for animation
 					m_wallGrabbing = true;
 					m_rb.linearVelocity = new Vector2(moveInput * speed, -slideSpeed);
 					m_wallStick = m_wallStickTime;
-				} else
+				}
+				else
 				{
 					m_wallStick -= Time.deltaTime;
 					actuallyWallGrabbing = false;
@@ -164,11 +169,11 @@ namespace SupanthaPaul
 
 				// enable/disable dust particles
 				float playerVelocityMag = m_rb.linearVelocity.sqrMagnitude;
-				if(m_dustParticle.isPlaying && playerVelocityMag == 0f)
+				if (m_dustParticle.isPlaying && playerVelocityMag == 0f)
 				{
 					m_dustParticle.Stop();
 				}
-				else if(!m_dustParticle.isPlaying && playerVelocityMag > 0f)
+				else if (!m_dustParticle.isPlaying && playerVelocityMag > 0f)
 				{
 					m_dustParticle.Play();
 				}
@@ -202,7 +207,7 @@ namespace SupanthaPaul
 					// dash effect
 					PoolManager.instance.ReuseObject(dashEffect, transform.position, Quaternion.identity);
 					// if player in air while dashing
-					if(!isGrounded)
+					if (!isGrounded)
 					{
 						m_hasDashedInAir = true;
 					}
@@ -210,26 +215,26 @@ namespace SupanthaPaul
 				}
 			}
 			m_dashCooldown -= Time.deltaTime;
-			
+
 			// if has dashed in air once but now grounded
 			if (m_hasDashedInAir && isGrounded)
 				m_hasDashedInAir = false;
-			
+
 			// Jumping
-			if(InputSystem.Jump() && m_extraJumps > 0 && !isGrounded && !m_wallGrabbing)	// extra jumping
+			if (InputSystem.Jump() && m_extraJumps > 0 && !isGrounded && !m_wallGrabbing)   // extra jumping
 			{
 				m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, m_extraJumpForce); ;
 				m_extraJumps--;
 				// jumpEffect
 				PoolManager.instance.ReuseObject(jumpEffect, groundCheck.position, Quaternion.identity);
 			}
-			else if(InputSystem.Jump() && (isGrounded || m_groundedRemember > 0f))	// normal single jumping
+			else if (InputSystem.Jump() && (isGrounded || m_groundedRemember > 0f)) // normal single jumping
 			{
 				m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, jumpForce);
 				// jumpEffect
 				PoolManager.instance.ReuseObject(jumpEffect, groundCheck.position, Quaternion.identity);
 			}
-			else if(InputSystem.Jump() && m_wallGrabbing && moveInput!=m_onWallSide )		// wall jumping off the wall
+			else if (InputSystem.Jump() && m_wallGrabbing && moveInput != m_onWallSide)     // wall jumping off the wall
 			{
 				m_wallGrabbing = false;
 				m_wallJumping = true;
@@ -238,7 +243,7 @@ namespace SupanthaPaul
 					Flip();
 				m_rb.AddForce(new Vector2(-m_onWallSide * wallJumpForce.x, wallJumpForce.y), ForceMode2D.Impulse);
 			}
-			else if(InputSystem.Jump() && m_wallGrabbing && moveInput != 0 && (moveInput == m_onWallSide))      // wall climbing jump
+			else if (InputSystem.Jump() && m_wallGrabbing && moveInput != 0 && (moveInput == m_onWallSide))      // wall climbing jump
 			{
 				m_wallGrabbing = false;
 				m_wallJumping = true;
@@ -279,6 +284,25 @@ namespace SupanthaPaul
 			Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
 			Gizmos.DrawWireSphere((Vector2)transform.position + grabRightOffset, grabCheckRadius);
 			Gizmos.DrawWireSphere((Vector2)transform.position + grabLeftOffset, grabCheckRadius);
+		}
+
+		private void OnTriggerEnter2D(Collider2D other)
+		{
+			if (other.CompareTag("Enemy"))
+			{
+				Die();
+			}
+		}
+
+		private void Die()
+		{
+			print("Died");
+			m_rb.linearVelocity = Vector2.zero;
+			m_dustParticle.Stop();
+			isDashing = false;
+			isAttacking = false;
+			isCurrentlyPlayable = false;
+			isDead = true;
 		}
 	}
 }
