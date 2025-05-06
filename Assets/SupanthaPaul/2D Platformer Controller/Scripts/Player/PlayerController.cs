@@ -9,7 +9,7 @@ namespace SupanthaPaul
 		[SerializeField] private float jumpForce;
 		[SerializeField] private float fallMultiplier;
 		[SerializeField] private Transform groundCheck;
-		[SerializeField] private float groundCheckRadius;
+		[SerializeField] private Vector2 groundCheckSize;
 		[SerializeField] private LayerMask whatIsGround;
 		[SerializeField] private int extraJumpCount = 1;
 		[SerializeField] private GameObject jumpEffect;
@@ -84,7 +84,7 @@ namespace SupanthaPaul
 		private void FixedUpdate()
 		{
 			// check if grounded
-			isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+			isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0f, whatIsGround);
 			Vector2 position = transform.position;
 			// check if on wall
 			m_onWall = Physics2D.OverlapCircle(position + grabRightOffset, grabCheckRadius, whatIsGround) || Physics2D.OverlapCircle(position + grabLeftOffset, grabCheckRadius, whatIsGround);
@@ -276,7 +276,7 @@ namespace SupanthaPaul
 		private void OnDrawGizmosSelected()
 		{
 			Gizmos.color = Color.red;
-			Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+			Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
 			Gizmos.DrawWireSphere((Vector2)transform.position + grabRightOffset, grabCheckRadius);
 			Gizmos.DrawWireSphere((Vector2)transform.position + grabLeftOffset, grabCheckRadius);
 		}
