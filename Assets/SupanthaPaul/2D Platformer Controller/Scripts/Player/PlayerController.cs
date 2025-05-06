@@ -288,9 +288,21 @@ namespace SupanthaPaul
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.CompareTag("Enemy"))
+			if (other.CompareTag("Obstacle"))
 			{
 				Die();
+			}
+
+			if (other.CompareTag("Enemy"))
+			{
+				if (isDashing)
+				{
+					other.GetComponent<EnemyController>().TriggerDeathAnimation();
+				}
+				else
+				{
+					Die();
+				}
 			}
 		}
 
