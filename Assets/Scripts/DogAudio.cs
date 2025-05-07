@@ -37,4 +37,16 @@ public class DogAudio : MonoBehaviour
         AudioManager.Instance.StopLoopingSFX();
         // AudioManager.Instance.PlaySFX("Idle");
     }
+
+    public void PlayBark()
+    {
+        AudioManager.Instance.StopLoopingSFX();
+        AudioManager.Instance.PlaySFX("Bark");
+    }
+
+    public void PlaySniff()
+    {
+        AudioManager.Instance.StopLoopingSFX();
+        AudioManager.Instance.PlaySFX("Sniff");
+    }
 }

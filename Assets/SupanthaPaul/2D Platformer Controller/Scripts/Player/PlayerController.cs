@@ -236,10 +236,12 @@ namespace SupanthaPaul
 				{
 					m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, m_extraJumpForce);
 					m_extraJumps--;
+					JumpEffect();
 				}
 				else if (isGrounded || m_groundedRemember > 0f) // normal single jumping
 				{
 					m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, jumpForce);
+					JumpEffect();
 				}
 				else if (m_wallGrabbing)
 				{
@@ -257,13 +259,18 @@ namespace SupanthaPaul
 					}
 					if (m_playerSide == m_onWallSide)
 						Flip();
-				}
 
-				// jumpEffect
-				PoolManager.instance.ReuseObject(jumpEffect, groundCheck.position, Quaternion.identity);
-				AudioManager.Instance.StopLoopingSFX();
-				AudioManager.Instance.PlaySFX("JumpUp");
+					JumpEffect();
+				}
 			}
+		}
+
+		private void JumpEffect()
+		{
+			// jumpEffect
+			PoolManager.instance.ReuseObject(jumpEffect, groundCheck.position, Quaternion.identity);
+			AudioManager.Instance.StopLoopingSFX();
+			AudioManager.Instance.PlaySFX("JumpUp");
 		}
 
 		void Flip()
