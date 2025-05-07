@@ -38,14 +38,17 @@ public class SettingsManager : MonoBehaviour
         _bgmSlider.value = PlayerPrefs.GetFloat("bgmSavedVolume", _bgmSlider.maxValue);
         _sfxSlider.value = PlayerPrefs.GetFloat("sfxSavedVolume", _sfxSlider.maxValue);
 
-        if (isAutoStart)
-        {
-            StartGame();
-        }
-
         // Apply the volume settings
         BgmSliderVolume();
         SfxSliderVolume();
+
+        AudioManager.Instance.StopSFX();
+
+        if (isAutoStart)
+        {
+            StartGame();
+            AudioManager.Instance.PlaySFX("Start");
+        }
     }
 
     // Start the game
