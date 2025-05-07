@@ -66693,6 +66693,11 @@ PrefabInstance:
       propertyPath: isAutoStart
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9026968662279729662, guid: ff8aa9b9fa9f3464a93658f37a824670,
+        type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -66979,6 +66984,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial Jump Text
       objectReference: {fileID: 0}
+    - target: {fileID: 2872407206729946853, guid: 3f0ed2555a859fc40a8148bea49e8f25,
+        type: 3}
+      propertyPath: m_isOrthographic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4352619225187409980, guid: 3f0ed2555a859fc40a8148bea49e8f25,
         type: 3}
       propertyPath: m_Pivot.x
@@ -67017,7 +67027,7 @@ PrefabInstance:
     - target: {fileID: 4352619225187409980, guid: 3f0ed2555a859fc40a8148bea49e8f25,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4352619225187409980, guid: 3f0ed2555a859fc40a8148bea49e8f25,
         type: 3}
