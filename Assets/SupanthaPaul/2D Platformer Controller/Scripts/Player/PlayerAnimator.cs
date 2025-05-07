@@ -68,6 +68,7 @@ namespace SupanthaPaul
 		private void TriggerDeathAnimation()
 		{
 			m_anim.SetTrigger(IsDead);
+			AudioManager.Instance.StopLoopingSFX();
 			AudioManager.Instance.PlaySFX("Die");
 			DOVirtual.DelayedCall(2f, () => SettingsManager.Instance.OnRestart());
 		}

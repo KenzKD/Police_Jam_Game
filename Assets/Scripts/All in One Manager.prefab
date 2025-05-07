@@ -1934,7 +1934,7 @@ MonoBehaviour:
   - name: Attack2
     clip: {fileID: 8300000, guid: 07397cd36f771544baea4b2120762d85, type: 3}
   - name: Die
-    clip: {fileID: 8300000, guid: e39999c092f3aa24da1149f81a15aaa6, type: 3}
+    clip: {fileID: 8300000, guid: 6fd9223859d2fe14c9edb0b0df212dd2, type: 3}
   - name: Start
     clip: {fileID: 8300000, guid: 9d0b0613946c807468ee8fe3b911bd32, type: 3}
   - name: JumpUp

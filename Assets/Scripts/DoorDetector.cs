@@ -8,6 +8,8 @@ public class DoorDetector : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // print("Player Detected");
+        AudioManager.Instance.StopLoopingSFX();
+        AudioManager.Instance.PlaySFX("OpenGate");
         Door.GetComponent<Animator>().SetBool(isDetected, true);
     }
 }

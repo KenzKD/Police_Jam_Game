@@ -42,8 +42,6 @@ public class SettingsManager : MonoBehaviour
         BgmSliderVolume();
         SfxSliderVolume();
 
-        AudioManager.Instance.StopSFX();
-
         if (isAutoStart)
         {
             StartGame();

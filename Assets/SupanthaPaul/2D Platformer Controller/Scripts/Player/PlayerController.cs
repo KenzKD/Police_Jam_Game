@@ -211,6 +211,9 @@ namespace SupanthaPaul
 					isDashing = true;
 					// dash effect
 					PoolManager.instance.ReuseObject(dashEffect, transform.position, Quaternion.identity);
+					AudioManager.Instance.StopLoopingSFX();
+					AudioManager.Instance.PlaySFX("Attack" + Random.Range(1, 3));
+					AudioManager.Instance.PlaySFX("Bark");
 					// if player in air while dashing
 					if (!isGrounded)
 					{
@@ -232,12 +235,16 @@ namespace SupanthaPaul
 				m_extraJumps--;
 				// jumpEffect
 				PoolManager.instance.ReuseObject(jumpEffect, groundCheck.position, Quaternion.identity);
+				AudioManager.Instance.StopLoopingSFX();
+				AudioManager.Instance.PlaySFX("JumpUp");
 			}
 			else if (InputSystem.Jump() && (isGrounded || m_groundedRemember > 0f)) // normal single jumping
 			{
 				m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, jumpForce);
 				// jumpEffect
 				PoolManager.instance.ReuseObject(jumpEffect, groundCheck.position, Quaternion.identity);
+				AudioManager.Instance.StopLoopingSFX();
+				AudioManager.Instance.PlaySFX("JumpUp");
 			}
 			else if (InputSystem.Jump() && m_wallGrabbing && moveInput != m_onWallSide)     // wall jumping off the wall
 			{

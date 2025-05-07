@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
     }
 
     // Play a sound effect by name
-    public void PlaySFX(string name, bool sfxAllowOverlap = false, bool RandomizePitch = true)
+    public void PlaySFX(string name, bool sfxAllowOverlap = true, bool RandomizePitch = true)
     {
         Sound sound = Array.Find(sfx, s => s.name == name);
         if (sound == null)

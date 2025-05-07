@@ -4612,21 +4612,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6015281125184575956, guid: dd381812477d98c498b74583fbe2c4bd,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6015281125184575956, guid: dd381812477d98c498b74583fbe2c4bd,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6015281125184575956, guid: dd381812477d98c498b74583fbe2c4bd,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6015281125184575956, guid: dd381812477d98c498b74583fbe2c4bd,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 80.1
       objectReference: {fileID: 0}
@@ -7886,10 +7871,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hammer Object
       objectReference: {fileID: 0}
-    - target: {fileID: 101032845021217984, guid: ab5249cce27ec024ba5aa80de1c34896,
+    - target: {fileID: 1124351682056814373, guid: ab5249cce27ec024ba5aa80de1c34896,
         type: 3}
-      propertyPath: m_TagString
-      value: Obstacle
+      propertyPath: MaxDistance
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8149952308772694994, guid: ab5249cce27ec024ba5aa80de1c34896,
         type: 3}
@@ -65321,10 +65306,20 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 722197261}
-    - target: {fileID: 5140810623626648723, guid: ff8aa9b9fa9f3464a93658f37a824670,
+    - target: {fileID: 8616750184014225738, guid: ff8aa9b9fa9f3464a93658f37a824670,
         type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10
+      propertyPath: sfx.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616750184014225738, guid: ff8aa9b9fa9f3464a93658f37a824670,
+        type: 3}
+      propertyPath: sfx.Array.data[13].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9d0b0613946c807468ee8fe3b911bd32, type: 3}
+    - target: {fileID: 8616750184014225738, guid: ff8aa9b9fa9f3464a93658f37a824670,
+        type: 3}
+      propertyPath: sfx.Array.data[13].name
+      value: OpenGate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
