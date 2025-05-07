@@ -81,7 +81,8 @@ public class SettingsManager : MonoBehaviour
     // Check if gameplay is allowed
     public bool AllowGamePlay()
     {
-        return !EventSystem.current.IsPointerOverGameObject() && GameisStarted && !GameisPaused;
+        // return !EventSystem.current.IsPointerOverGameObject() && GameisStarted && !GameisPaused;
+        return GameisStarted && !GameisPaused;
     }
 
     // Adjust BGM volume
