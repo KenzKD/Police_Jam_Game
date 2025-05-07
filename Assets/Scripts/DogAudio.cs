@@ -20,21 +20,21 @@ public class DogAudio : MonoBehaviour
     //     AudioManager.Instance.PlaySFX("Die");
     // }
 
-    // public void PlayJumpUp()
-    // {
-    //     AudioManager.Instance.StopLoopingSFX();
-    //     AudioManager.Instance.PlaySFX("JumpUp");
-    // }
+    public void PlayJumpUp()
+    {
+        AudioManager.Instance.StopLoopingSFX();
+        AudioManager.Instance.PlaySFX("JumpUp");
+    }
 
     public void PlayWallGrab()
     {
-        AudioManager.Instance.StopLoopingSFX();
-        AudioManager.Instance.PlayLoopingSFX("WallGrab");
+        // AudioManager.Instance.StopLoopingSFX();
+        // AudioManager.Instance.PlayLoopingSFX("WallGrab");
     }
 
     public void PlayIdle()
     {
         AudioManager.Instance.StopLoopingSFX();
-        AudioManager.Instance.PlaySFX("Idle");
+        // AudioManager.Instance.PlaySFX("Idle");
     }
 }

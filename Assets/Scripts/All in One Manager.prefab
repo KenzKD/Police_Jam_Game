@@ -1942,7 +1942,11 @@ MonoBehaviour:
   - name: Idle
     clip: {fileID: 8300000, guid: 5689aa089a4efa242955991e9319660f, type: 3}
   - name: WallGrab
-    clip: {fileID: 8300000, guid: efff815f6c67fcf49883105b3b8776f9, type: 3}
+    clip: {fileID: 8300000, guid: 0914ae1196b868a41890440c8c2338bd, type: 3}
+  - name: OpenGate
+    clip: {fileID: 8300000, guid: 9a8f54842b1088d41bd96b4cde95eea6, type: 3}
+  - name: Bark
+    clip: {fileID: 8300000, guid: fe535f6a04e2a124c80b338a49dbe5df, type: 3}
   bgmSource: {fileID: 3030682834483543830}
   menuSource: {fileID: 4309044861652385015}
   sfxParent: {fileID: 8322515003217293956}

@@ -8,10 +8,10 @@ public class WinDetector : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (isDetected) return;
-        
+
         // print("Player Detected");
         isDetected = true;
         AudioManager.Instance.PlaySFX("Win");
-        DOVirtual.DelayedCall(3f, () => SettingsManager.Instance.ChooseLevel(levelIndex));
+        DOVirtual.DelayedCall(1.5f, () => SettingsManager.Instance.ChooseLevel(levelIndex));
     }
 }
