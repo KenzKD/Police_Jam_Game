@@ -15,12 +15,15 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public ShakePreset ShakePreset;
 
+    public Collider2D DoorDetector;
+
     // Initialize game state and UI
     private void Start()
     {
         Instance = this;
         scoreText.text = $"{score}/{total_Score}";
         WinScreen.SetActive(false);
+        DoorDetector.enabled = false;
     }
 
     // Add points to the score
@@ -38,7 +41,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (score == total_Score)
         {
-            StartCoroutine(Win(0f));
+            DoorDetector.enabled = true;
         }
         // else if (score == total_Score - 1)
         // {
