@@ -30,7 +30,7 @@ public class SettingsManager : MonoBehaviour
         introPanel.SetActive(true);
         settingsPanel.SetActive(false);
         scorePanel.SetActive(false);
-        restartObject.SetActive(false);
+        restartObject.SetActive(true);
         settingsBGM = settingsPanel.GetComponent<Image>();
 
         settingObject.SetActive(true);
