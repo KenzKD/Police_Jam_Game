@@ -8,13 +8,14 @@ namespace SupanthaPaul
 		private Rigidbody2D m_rb;
 		private PlayerController m_controller;
 		private Animator m_anim;
-		private bool isTrulyDead = false;
+		private bool isTrulyDead = false, isStillSliding = false;
 		private static readonly int Move = Animator.StringToHash("Move");
 		private static readonly int JumpState = Animator.StringToHash("JumpState");
 		private static readonly int IsJumping = Animator.StringToHash("IsJumping");
 		private static readonly int WallGrabbing = Animator.StringToHash("WallGrabbing");
 		private static readonly int IsDashing = Animator.StringToHash("IsDashing");
 		private static readonly int IsDead = Animator.StringToHash("IsDead");
+		private static readonly int IsSliding = Animator.StringToHash("IsSliding");
 
 		private void Start()
 		{
@@ -31,8 +32,7 @@ namespace SupanthaPaul
 			m_anim.SetFloat(Move, Mathf.Abs(m_rb.linearVelocity.x));
 
 			// Jump state (handles transitions to falling/jumping)
-			float verticalVelocity = m_rb.linearVelocity.y;
-			m_anim.SetFloat(JumpState, verticalVelocity);
+			m_anim.SetFloat(JumpState, m_rb.linearVelocity.y);
 
 			// Jump animation
 			if (!m_controller.isGrounded && !m_controller.actuallyWallGrabbing)
@@ -47,10 +47,12 @@ namespace SupanthaPaul
 			if (!m_controller.isGrounded && m_controller.actuallyWallGrabbing)
 			{
 				m_anim.SetBool(WallGrabbing, true);
+				TriggerWallGrabSound();
 			}
 			else
 			{
 				m_anim.SetBool(WallGrabbing, false);
+				isStillSliding = false;
 			}
 
 			// dash animation
@@ -66,7 +68,16 @@ namespace SupanthaPaul
 		private void TriggerDeathAnimation()
 		{
 			m_anim.SetTrigger(IsDead);
+			AudioManager.Instance.PlaySFX("Die");
 			DOVirtual.DelayedCall(2f, () => SettingsManager.Instance.OnRestart());
+		}
+
+		private void TriggerWallGrabSound()
+		{
+			if (isStillSliding) return;
+
+			isStillSliding = true;
+			m_anim.SetTrigger(IsSliding);
 		}
 	}
 }
