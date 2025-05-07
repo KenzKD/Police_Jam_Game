@@ -237,6 +237,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5140810623626648723, guid: ff8aa9b9fa9f3464a93658f37a824670,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 6627763895003207629, guid: ff8aa9b9fa9f3464a93658f37a824670,
         type: 3}
       propertyPath: isAutoStart
@@ -261,6 +266,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026968662279729662, guid: ff8aa9b9fa9f3464a93658f37a824670,
+        type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026968662279729662, guid: ff8aa9b9fa9f3464a93658f37a824670,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 215
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
