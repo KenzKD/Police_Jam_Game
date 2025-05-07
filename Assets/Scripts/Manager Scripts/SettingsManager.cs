@@ -15,7 +15,7 @@ public class SettingsManager : MonoBehaviour
 
     // UI elements
     public Slider _bgmSlider, _sfxSlider;
-    public Button settingsButton;
+    public Button settingsButton, playButton;
     public GameObject introPanel, settingsPanel, scorePanel, settingObject, restartObject;
     private Image settingsBGM;
     private bool isAnimating = false;
@@ -105,6 +105,7 @@ public class SettingsManager : MonoBehaviour
 
         isAnimating = true;
         settingsPanel.SetActive(true);
+        playButton.enabled = false;
         settingObject.transform.DOScale(0.001f, 0.25f).SetEase(Ease.InExpo).SetUpdate(true);
         settingsBGM.DOFade(0.8f, 0.5f).SetEase(Ease.OutExpo).SetUpdate(true).onComplete = () =>
         {
@@ -131,6 +132,7 @@ public class SettingsManager : MonoBehaviour
         settingsBGM.DOFade(0.001f, 0.001f).SetUpdate(true);
         settingsPanel.SetActive(false);
         settingObject.SetActive(true);
+        playButton.enabled = true;
         settingObject.transform.DOScale(1, 0.25f).SetEase(Ease.OutExpo).SetUpdate(true).onComplete = () =>
         {
             isAnimating = false;
