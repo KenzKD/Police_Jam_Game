@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SupanthaPaul
 {
 	public class CameraFollow : MonoBehaviour
 	{
-	    [SerializeField]
+		[SerializeField]
 		private Transform target;
 		[SerializeField]
 		private float smoothSpeed = 0.125f;
@@ -15,21 +13,14 @@ namespace SupanthaPaul
 		public Vector3 minCamerabounds;
 		public Vector3 maxCamerabounds;
 
-
 		private void FixedUpdate()
 		{
-			Vector3 desiredPosition = target.localPosition + offset;
-			var localPosition = transform.localPosition;
-			Vector3 smoothedPosition = Vector3.Lerp(localPosition, desiredPosition, smoothSpeed);
-			localPosition = smoothedPosition;
-
-			// clamp camera's position between min and max
-			localPosition = new Vector3(
-				Mathf.Clamp(localPosition.x, minCamerabounds.x, maxCamerabounds.x),
-				Mathf.Clamp(localPosition.y, minCamerabounds.y, maxCamerabounds.y),
-				Mathf.Clamp(localPosition.z, minCamerabounds.z, maxCamerabounds.z)
-				);
-			transform.localPosition = localPosition;
+			transform.position = Vector3.Lerp(transform.position, target.position + offset, smoothSpeed);
+			transform.position = new Vector3(
+				Mathf.Clamp(transform.position.x, minCamerabounds.x, maxCamerabounds.x),
+				Mathf.Clamp(transform.position.y, minCamerabounds.y, maxCamerabounds.y),
+				Mathf.Clamp(transform.position.z, minCamerabounds.z, maxCamerabounds.z)
+			);
 		}
 
 		public void SetTarget(Transform targetToSet)
