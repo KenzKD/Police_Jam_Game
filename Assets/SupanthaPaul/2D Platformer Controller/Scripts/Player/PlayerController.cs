@@ -92,9 +92,12 @@ namespace SupanthaPaul
 			isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0f, whatIsGround);
 			Vector2 position = transform.position;
 			// check if on wall
-			m_onWall = Physics2D.OverlapCircle(position + grabRightOffset, grabCheckRadius, whatIsGround) || Physics2D.OverlapCircle(position + grabLeftOffset, grabCheckRadius, whatIsGround);
-			m_onRightWall = Physics2D.OverlapCircle(position + grabRightOffset, grabCheckRadius, whatIsGround);
-			m_onLeftWall = Physics2D.OverlapCircle(position + grabLeftOffset, grabCheckRadius, whatIsGround);
+			Collider2D rightHit = Physics2D.OverlapCircle(position + grabRightOffset, grabCheckRadius, whatIsGround);
+			Collider2D leftHit = Physics2D.OverlapCircle(position + grabLeftOffset, grabCheckRadius, whatIsGround);
+
+			m_onRightWall = rightHit != null && !rightHit.CompareTag("Platform");
+			m_onLeftWall = leftHit != null && !leftHit.CompareTag("Platform");
+			m_onWall = m_onRightWall || m_onLeftWall;
 
 			// calculate player and wall sides as integers
 			CalculateSides();
@@ -180,79 +183,79 @@ namespace SupanthaPaul
 					m_dustParticle1.Play();
 					m_dustParticle2.Play();
 				}
+			}
+		}
 
+		void Update()
+		{
+			// horizontal input
+			moveInput = InputSystem.HorizontalRaw();
 
+			if (isGrounded)
+			{
+				m_extraJumps = extraJumpCount;
+			}
 
-				// horizontal input
-				moveInput = InputSystem.HorizontalRaw();
+			// grounded remember offset (for more responsive jump)
+			m_groundedRemember -= Time.deltaTime;
+			if (isGrounded)
+				m_groundedRemember = m_groundedRememberTime;
 
-				if (isGrounded)
+			if (!isCurrentlyPlayable) return;
+			// if not currently dashing and hasn't already dashed in air once
+			if (!isDashing && !m_hasDashedInAir && m_dashCooldown <= 0f)
+			{
+				// dash input (left shift)
+				if (InputSystem.Dash())
 				{
-					m_extraJumps = extraJumpCount;
-				}
-
-				// grounded remember offset (for more responsive jump)
-				m_groundedRemember -= Time.deltaTime;
-				if (isGrounded)
-					m_groundedRemember = m_groundedRememberTime;
-
-				if (!isCurrentlyPlayable) return;
-				// if not currently dashing and hasn't already dashed in air once
-				if (!isDashing && !m_hasDashedInAir && m_dashCooldown <= 0f)
-				{
-					// dash input (left shift)
-					if (InputSystem.Dash())
+					isDashing = true;
+					// dash effect
+					PoolManager.instance.ReuseObject(dashEffect, transform.position, Quaternion.identity);
+					// if player in air while dashing
+					if (!isGrounded)
 					{
-						isDashing = true;
-						// dash effect
-						PoolManager.instance.ReuseObject(dashEffect, transform.position, Quaternion.identity);
-						// if player in air while dashing
-						if (!isGrounded)
-						{
-							m_hasDashedInAir = true;
-						}
-						// dash logic is in FixedUpdate
+						m_hasDashedInAir = true;
 					}
+					// dash logic is in FixedUpdate
 				}
-				m_dashCooldown -= Time.deltaTime;
+			}
+			m_dashCooldown -= Time.deltaTime;
 
-				// if has dashed in air once but now grounded
-				if (m_hasDashedInAir && isGrounded)
-					m_hasDashedInAir = false;
+			// if has dashed in air once but now grounded
+			if (m_hasDashedInAir && isGrounded)
+				m_hasDashedInAir = false;
 
-				// Jumping
-				if (InputSystem.Jump() && m_extraJumps > 0 && !isGrounded && !m_wallGrabbing)   // extra jumping
-				{
-					m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, m_extraJumpForce); ;
-					m_extraJumps--;
-					// jumpEffect
-					PoolManager.instance.ReuseObject(jumpEffect, groundCheck.position, Quaternion.identity);
-				}
-				else if (InputSystem.Jump() && (isGrounded || m_groundedRemember > 0f)) // normal single jumping
-				{
-					m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, jumpForce);
-					// jumpEffect
-					PoolManager.instance.ReuseObject(jumpEffect, groundCheck.position, Quaternion.identity);
-				}
-				else if (InputSystem.Jump() && m_wallGrabbing && moveInput != m_onWallSide)     // wall jumping off the wall
-				{
-					m_wallGrabbing = false;
-					m_wallJumping = true;
-					Debug.Log("Wall jumped");
-					if (m_playerSide == m_onWallSide)
-						Flip();
-					m_rb.AddForce(new Vector2(-m_onWallSide * wallJumpForce.x, wallJumpForce.y), ForceMode2D.Impulse);
-				}
-				else if (InputSystem.Jump() && m_wallGrabbing && moveInput != 0 && (moveInput == m_onWallSide))      // wall climbing jump
-				{
-					m_wallGrabbing = false;
-					m_wallJumping = true;
-					Debug.Log("Wall climbed");
-					if (m_playerSide == m_onWallSide)
-						Flip();
-					m_rb.AddForce(new Vector2(-m_onWallSide * wallClimbForce.x, wallClimbForce.y), ForceMode2D.Impulse);
-				}
-
+			// Jumping
+			if (InputSystem.Jump() && m_extraJumps > 0 && !isGrounded && !m_wallGrabbing)   // extra jumping
+			{
+				m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, m_extraJumpForce); ;
+				m_extraJumps--;
+				// jumpEffect
+				PoolManager.instance.ReuseObject(jumpEffect, groundCheck.position, Quaternion.identity);
+			}
+			else if (InputSystem.Jump() && (isGrounded || m_groundedRemember > 0f)) // normal single jumping
+			{
+				m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, jumpForce);
+				// jumpEffect
+				PoolManager.instance.ReuseObject(jumpEffect, groundCheck.position, Quaternion.identity);
+			}
+			else if (InputSystem.Jump() && m_wallGrabbing && moveInput != m_onWallSide)     // wall jumping off the wall
+			{
+				m_wallGrabbing = false;
+				m_wallJumping = true;
+				Debug.Log("Wall jumped");
+				if (m_playerSide == m_onWallSide)
+					Flip();
+				m_rb.AddForce(new Vector2(-m_onWallSide * wallJumpForce.x, wallJumpForce.y), ForceMode2D.Impulse);
+			}
+			else if (InputSystem.Jump() && m_wallGrabbing && moveInput != 0 && (moveInput == m_onWallSide))      // wall climbing jump
+			{
+				m_wallGrabbing = false;
+				m_wallJumping = true;
+				Debug.Log("Wall climbed");
+				if (m_playerSide == m_onWallSide)
+					Flip();
+				m_rb.AddForce(new Vector2(-m_onWallSide * wallClimbForce.x, wallClimbForce.y), ForceMode2D.Impulse);
 			}
 		}
 
