@@ -1,20 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 public class ItemCollector : MonoBehaviour
 {
-    private int cherries = 0;
-    [SerializeField] private Text cherriesText;
-    [SerializeField] private AudioSource collectionSFX;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Cherry"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            collectionSFX.Play();
-            Destroy(collision.gameObject);
-            cherries++;
-            cherriesText.text = "Cherries: " + cherries;
+            ScoreManager.Instance.AddPoint(1);
+            GetComponent<Collider2D>().enabled = false;
+            transform.DOScale(0f, 0.5f).SetEase(Ease.InExpo).OnComplete(() => Destroy(transform.parent.gameObject));
         }
     }
 }

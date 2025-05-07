@@ -1965,7 +1965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8befaa5732341384983d74de673770ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAutoStart: 1
+  isAutoStart: 0
   _bgmSlider: {fileID: 5792443369433697789}
   _sfxSlider: {fileID: 4169374966950429387}
   settingsButton: {fileID: 1967026182521160760}
@@ -1992,9 +1992,10 @@ MonoBehaviour:
     type: 3}
   Cam: {fileID: 5287778733064972228}
   score: 0
-  total_Score: 10
+  total_Score: 1
   scoreText: {fileID: 7550819232936933411}
   ShakePreset: {fileID: 11400000, guid: bd4328bd5427ab74383676e7049ce3d3, type: 2}
+  DoorDetector: {fileID: 0}
 --- !u!114 &6048143314661018030
 MonoBehaviour:
   m_ObjectHideFlags: 0

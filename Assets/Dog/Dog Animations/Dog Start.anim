@@ -137,21 +137,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: PlayWallGrab
+    functionName: 
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.25
-    functionName: 
+    functionName: PlaySniff
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.5
-    functionName: 
+    functionName: PlayBark
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
