@@ -1915,7 +1915,7 @@ MonoBehaviour:
   Mixer: {fileID: 24100000, guid: 03d822b94095bd34d9e9ce89c62ae68b, type: 2}
   bgm:
   - name: Theme
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: a68f2f34f79329c448db8a3d75b35f4f, type: 3}
   sfx:
   - name: Win
     clip: {fileID: 8300000, guid: efff815f6c67fcf49883105b3b8776f9, type: 3}
@@ -1966,6 +1966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAutoStart: 0
+  playerAnimator: {fileID: 0}
   _bgmSlider: {fileID: 5792443369433697789}
   _sfxSlider: {fileID: 4169374966950429387}
   settingsButton: {fileID: 1967026182521160760}
