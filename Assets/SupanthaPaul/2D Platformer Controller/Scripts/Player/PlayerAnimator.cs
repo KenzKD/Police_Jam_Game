@@ -110,7 +110,6 @@ namespace SupanthaPaul
 
 			LeftText.DOFade(1, 0.25f).SetEase(Ease.OutExpo);
 			RightText.DOFade(1, 0.25f).SetEase(Ease.OutExpo);
-
 		}
 	}
 }

@@ -335,6 +335,7 @@ namespace SupanthaPaul
 		private void Die()
 		{
 			print("Died");
+			ScoreManager.Instance.CameraShake();
 			m_rb.linearVelocity = Vector2.zero;
 			m_dustParticle1.Stop();
 			m_dustParticle2.Stop();

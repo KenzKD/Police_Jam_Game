@@ -16,6 +16,7 @@ public class ScoreManager : MonoBehaviour
     public ShakePreset ShakePreset;
 
     public Collider2D DoorDetector;
+    private bool justScored = false;
 
     // Initialize game state and UI
     private void Start()
@@ -29,6 +30,10 @@ public class ScoreManager : MonoBehaviour
     // Add points to the score
     public void AddPoint(float value)
     {
+        if (justScored) return;
+
+        justScored = true;
+        DOVirtual.DelayedCall(0.5f, () => justScored = false);
         score += value;
         print($"New score: {score}");
         scoreText.text = $"{score}/{total_Score}";
@@ -79,6 +84,11 @@ public class ScoreManager : MonoBehaviour
         AudioManager.Instance.PlaySFX("Wrong");
         GameObject Text = Instantiate(WrongText, newPosition, Quaternion.identity);
         Text.transform.DOScale(0f, 0.5f).SetEase(Ease.InExpo).SetDelay(0.5f).OnComplete(() => Destroy(Text));
+        Shaker.ShakeAll(ShakePreset);
+    }
+
+    public void CameraShake()
+    {
         Shaker.ShakeAll(ShakePreset);
     }
 }
