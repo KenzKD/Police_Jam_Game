@@ -3657,6 +3657,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2010424305}
     m_Modifications:
+    - target: {fileID: 582775853660952855, guid: 1acaa3ccb4c14e740abbaea98322866a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1040312314, guid: dbbd6f4abba8f2c42aacaf704fabdca4,
+        type: 3}
+    - target: {fileID: 2560255269928118714, guid: 1acaa3ccb4c14e740abbaea98322866a,
+        type: 3}
+      propertyPath: m_text
+      value: Fake Money
+      objectReference: {fileID: 0}
     - target: {fileID: 2836045436140551140, guid: 1acaa3ccb4c14e740abbaea98322866a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -62825,6 +62836,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2010424305}
     m_Modifications:
+    - target: {fileID: 582775853660952855, guid: 1acaa3ccb4c14e740abbaea98322866a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6c8d3bcaf027e2149942fa1a6f849951,
+        type: 3}
+    - target: {fileID: 2560255269928118714, guid: 1acaa3ccb4c14e740abbaea98322866a,
+        type: 3}
+      propertyPath: m_text
+      value: Drugs
+      objectReference: {fileID: 0}
     - target: {fileID: 2836045436140551140, guid: 1acaa3ccb4c14e740abbaea98322866a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -63560,6 +63582,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2010424305}
     m_Modifications:
+    - target: {fileID: 582775853660952855, guid: 1acaa3ccb4c14e740abbaea98322866a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1fc25cc6dc4b4f54ebd7579b656f1453,
+        type: 3}
+    - target: {fileID: 2560255269928118714, guid: 1acaa3ccb4c14e740abbaea98322866a,
+        type: 3}
+      propertyPath: m_text
+      value: Sabre
+      objectReference: {fileID: 0}
     - target: {fileID: 2836045436140551140, guid: 1acaa3ccb4c14e740abbaea98322866a,
         type: 3}
       propertyPath: m_LocalScale.x
