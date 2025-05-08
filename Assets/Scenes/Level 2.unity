@@ -66895,6 +66895,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Death Zone
       objectReference: {fileID: 0}
+    - target: {fileID: 2639329993548022013, guid: adf11b7cbcc7a00489d9abf53cc1b47b,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8149952308772694994, guid: adf11b7cbcc7a00489d9abf53cc1b47b,
         type: 3}
       propertyPath: m_LocalScale.x
