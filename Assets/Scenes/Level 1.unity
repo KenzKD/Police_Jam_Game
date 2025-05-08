@@ -66304,7 +66304,7 @@ PrefabInstance:
     - target: {fileID: 2872407206729946853, guid: 3f0ed2555a859fc40a8148bea49e8f25,
         type: 3}
       propertyPath: m_text
-      value: 'Collect all
+      value: 'Destroy all
 
         Contraband'
       objectReference: {fileID: 0}
