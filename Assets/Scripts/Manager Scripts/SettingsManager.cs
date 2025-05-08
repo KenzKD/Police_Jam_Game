@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
+using SupanthaPaul;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class SettingsManager : MonoBehaviour
     // Game state flags
     public static bool GameisPaused, GameisStarted;
     public bool isAutoStart = true;
+    public PlayerAnimator playerAnimator;
 
     // UI elements
     public Slider _bgmSlider, _sfxSlider;
@@ -24,7 +26,7 @@ public class SettingsManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
         GameisStarted = false;
         GameisPaused = true;
         introPanel.SetActive(true);
@@ -58,7 +60,20 @@ public class SettingsManager : MonoBehaviour
         scorePanel.SetActive(true);
         restartObject.SetActive(true);
         GameisPaused = false;
-        GameisStarted = true;
+        if (!isAutoStart)
+        {
+            playerAnimator.TriggerTutorialStartAnimation();
+            DOVirtual.DelayedCall(5f, () =>
+            {
+                playerAnimator.PlayDustParticles();
+                GameisStarted = true;
+            });
+        }
+        else
+        {
+            playerAnimator.PlayDustParticles();
+            GameisStarted = true;
+        }
     }
 
 
@@ -119,7 +134,7 @@ public class SettingsManager : MonoBehaviour
         if (GameisStarted)
         {
             scorePanel.SetActive(false);
-            Time.timeScale = 0f;
+            // Time.timeScale = 0f;
             GameisPaused = true;
         }
     }

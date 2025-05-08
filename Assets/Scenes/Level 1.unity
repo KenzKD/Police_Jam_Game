@@ -65708,6 +65708,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1338469210650609679}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &722197262 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1173712999407116002, guid: bf3de98d3d6d2724bb485f26b3d41d7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1338469210650609679}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c342bd39c8203da4bbd4336f799dc8d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &751206108
 GameObject:
   m_ObjectHideFlags: 0
@@ -66580,6 +66592,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1337546419830740967, guid: ff8aa9b9fa9f3464a93658f37a824670,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2708359038806489952, guid: ff8aa9b9fa9f3464a93658f37a824670,
         type: 3}
       propertyPath: m_Name
@@ -66600,11 +66617,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.3400352
       objectReference: {fileID: 0}
+    - target: {fileID: 6627763895003207629, guid: ff8aa9b9fa9f3464a93658f37a824670,
+        type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 722197262}
+    - target: {fileID: 7070988610877163391, guid: ff8aa9b9fa9f3464a93658f37a824670,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7177954479096091449, guid: ff8aa9b9fa9f3464a93658f37a824670,
         type: 3}
       propertyPath: DoorDetector
       value: 
       objectReference: {fileID: 1960878844}
+    - target: {fileID: 8616750184014225738, guid: ff8aa9b9fa9f3464a93658f37a824670,
+        type: 3}
+      propertyPath: bgm.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a68f2f34f79329c448db8a3d75b35f4f, type: 3}
     - target: {fileID: 9026968662279729662, guid: ff8aa9b9fa9f3464a93658f37a824670,
         type: 3}
       propertyPath: m_OcclusionCulling

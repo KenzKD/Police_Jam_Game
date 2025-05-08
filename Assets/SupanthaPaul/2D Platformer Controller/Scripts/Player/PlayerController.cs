@@ -188,7 +188,7 @@ namespace SupanthaPaul
 
 		void Update()
 		{
-			if (!isCurrentlyPlayable && !SettingsManager.Instance.AllowGamePlay() || isDead) return;
+			if (!isCurrentlyPlayable || !SettingsManager.Instance.AllowGamePlay() || isDead) return;
 
 			// horizontal input
 			moveInput = InputSystem.HorizontalRaw();
