@@ -60,6 +60,8 @@ public class SettingsManager : MonoBehaviour
         scorePanel.SetActive(true);
         restartObject.SetActive(true);
         GameisPaused = false;
+        playerAnimator.SetIsGameStarted();
+
         if (!isAutoStart)
         {
             playerAnimator.TriggerTutorialStartAnimation();
@@ -134,7 +136,7 @@ public class SettingsManager : MonoBehaviour
         if (GameisStarted)
         {
             scorePanel.SetActive(false);
-            // Time.timeScale = 0f;
+            Time.timeScale = 0f;
             GameisPaused = true;
         }
     }

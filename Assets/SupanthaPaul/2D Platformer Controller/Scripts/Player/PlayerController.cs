@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace SupanthaPaul
 {
@@ -321,6 +322,13 @@ namespace SupanthaPaul
 				{
 					Die();
 				}
+			}
+
+			if (other.CompareTag("Collectible"))
+			{
+				ScoreManager.Instance.AddPoint(1);
+				other.GetComponent<Collider2D>().enabled = false;
+				other.transform.DOScale(0f, 0.5f).SetEase(Ease.InExpo).OnComplete(() => Destroy(other.transform.parent.gameObject));
 			}
 		}
 
